@@ -1,5 +1,6 @@
 package com.example.vaultbalance;
 
+import io.papermc.paper.scoreboard.numbers.NumberFormat;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.Style;
 import net.milkbowl.vault.economy.Economy;
@@ -10,18 +11,14 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
-import io.papermc.paper.scoreboard.numbers.NumberFormat;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.plugin.Plugin;
-
-import java.text.DecimalFormat;
 
 public class BalanceScoreboardTask extends BukkitRunnable {
 
     private static final String OBJECTIVE_NAME = "vaultbal";
     private final Plugin plugin;
     private final Economy economy;
-    private final DecimalFormat format = new DecimalFormat("#,##0.00");
 
     public BalanceScoreboardTask(Plugin plugin, Economy economy) {
         this.plugin = plugin;
@@ -37,8 +34,6 @@ public class BalanceScoreboardTask extends BukkitRunnable {
 
     private void updatePlayer(Player player) {
         // Jeder Spieler bekommt sein eigenes Scoreboard-Objekt mit "Below Name".
-        // So sieht JEDER Spieler bei JEDEM anderen Spieler dessen Kontostand,
-        // ohne dass sich die Scoreboards der Spieler gegenseitig überschreiben.
         Scoreboard board = player.getScoreboard();
 
         // Falls der Spieler noch das Hauptboard des Servers nutzt, eigenes anlegen
